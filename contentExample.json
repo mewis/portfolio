@@ -1,0 +1,9 @@
+/** exmaple shhet of content.json
+ * create a file called content.json in root
+ * enter you content in same format as below
+ **/
+
+
+{
+    "title" : "whoop my content"
+}
