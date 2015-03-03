@@ -71,8 +71,9 @@ gulp.task('watch', function() {
         proxy: server
     });
 
+    gulp.watch( 'index.html' ).on( 'change', browserSync.reload );
     gulp.watch(src_js, ['lint', 'js']).on( 'change', browserSync.reload );
-    gulp.watch(src_dir_scss+'*.scss', ['sass']);
+    gulp.watch(src_dir_scss+'*.scss', ['sass']).on( 'change', browserSync.reload );
 });
 
 // Default Task
