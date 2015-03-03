@@ -3,3 +3,6 @@
 *.swo
 node_modules
 vendor
+.idea
+.idea/workspace.xml
+.idea/*
