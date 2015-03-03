@@ -12,4 +12,11 @@ if(typeof angular != 'undefined') {
                 controller : 'homeCtrl'
             })
     }])
+
+    app.config(["$locationProvider", function($locationProvider) {
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: false
+        });
+    }]);
 }
