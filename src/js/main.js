@@ -5,6 +5,7 @@
  */
  ( function( $ ) {
   $( function() {
+      alert('fuck off');
 
     //Go!
 

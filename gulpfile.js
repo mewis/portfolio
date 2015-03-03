@@ -46,6 +46,7 @@ gulp.task('sass', function() {
 });
 
 // Lint Task
+
 gulp.task('lint', function() {
     return gulp.src(src_js)
         .pipe(jshint())
@@ -71,9 +72,9 @@ gulp.task('watch', function() {
         proxy: server
     });
 
-    gulp.watch(src_js, ['lint', 'js']).on( 'change', browserSync.reload );
+    gulp.task('default', ['lint', 'sass', 'js', 'watch']);
     gulp.watch(src_dir_scss+'*.scss', ['sass']);
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'js', 'watch']);
+gulp.task('default', ['sass', 'js', 'watch']);
