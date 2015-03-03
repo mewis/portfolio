@@ -3,7 +3,7 @@ var gulp = require('gulp');
 
 var server = 'mcportfolio:8888';
 
-var assets_dir     = '';
+var assets_dir       = '';
 var foundation_dir   = 'bower_components/foundation/';
 
 var src_dir_scss     = 'src/scss/';
@@ -12,7 +12,6 @@ var dist_dir_css     = 'css/';
 var src_js = [
     foundation_dir + 'js/foundation.js',
     foundation_dir + 'js/vendor/custom.modernizr.js',
-    'src/js/*.js',
     'src/js/**/*.js'
 ];
 var dist_dir_js      = 'js/';
@@ -60,7 +59,7 @@ gulp.task('js', function() {
         .pipe(concat('scripts.js'))
         .pipe(rename('scripts.min.js'))
         .pipe(uglify()
-            .on('error', function(err){console.log(err); }))
+          .on('error', function(err){ //console.log(err); }))
         .pipe(sourcemaps.write('../maps'))
         .pipe(gulp.dest(dist_dir_js));
 });
