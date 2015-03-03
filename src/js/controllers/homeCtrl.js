@@ -1,4 +1,5 @@
-angular.module('mcPortfolioApp').controller('homeCtrl', ['$scope', function($scope){
-    $scope.title = 'hey ho lets go!';
-    console.log($scope.title);
-}])
+if(typeof angular != 'undefined') {
+    app.controller('homeCtrl', ["$scope",  function ($scope) {
+        $scope.title = 'hey ho lets go!';
+    }])
+}

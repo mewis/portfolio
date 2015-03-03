@@ -1,5 +1,5 @@
 // Include gulp
-var gulp = require('gulp'); 
+var gulp = require('gulp');
 
 var server = 'mcportfolio:8888';
 
@@ -12,7 +12,8 @@ var dist_dir_css     = 'css/';
 var src_js = [
     foundation_dir + 'js/foundation.js',
     foundation_dir + 'js/vendor/custom.modernizr.js',
-    'src/js/*.js'
+    'src/js/*.js',
+    'src/js/**/*.js'
 ];
 var dist_dir_js      = 'js/';
 
@@ -31,22 +32,21 @@ var browserSync = require('browser-sync');
 gulp.task('sass', function() {
     return gulp.src(src_dir_scss+'*.scss')
         .pipe(sass({
-          includePaths: [
-            foundation_dir + 'scss/'
-          ]
-          }))
+            includePaths: [
+                foundation_dir + 'scss/'
+            ]
+        }))
         .pipe(sourcemaps.init())
         //.pipe(datauri())
         .pipe(autoprefixer({
-          browsers: ['> 1%'],
-          cascade: false
+            browsers: ['> 1%'],
+            cascade: false
         }))
         .pipe(sourcemaps.write('../maps'))
         .pipe(gulp.dest(dist_dir_css));
 });
 
 // Lint Task
-
 gulp.task('lint', function() {
     return gulp.src(src_js)
         .pipe(jshint())
@@ -60,7 +60,7 @@ gulp.task('js', function() {
         .pipe(concat('scripts.js'))
         .pipe(rename('scripts.min.js'))
         .pipe(uglify()
-          .on('error', function(err){console.log(err); }))
+            .on('error', function(err){console.log(err); }))
         .pipe(sourcemaps.write('../maps'))
         .pipe(gulp.dest(dist_dir_js));
 });
@@ -68,13 +68,14 @@ gulp.task('js', function() {
 // Watch Files For Changes
 gulp.task('watch', function() {
 
-        browserSync({
+    browserSync({
         proxy: server
     });
 
-    gulp.task('default', ['lint', 'sass', 'js', 'watch']);
-    gulp.watch(src_dir_scss+'*.scss', ['sass']);
+    gulp.watch( 'index.html' ).on( 'change', browserSync.reload );
+    gulp.watch(src_js, ['lint', 'js']).on( 'change', browserSync.reload );
+    gulp.watch(src_dir_scss+'*.scss', ['sass']).on( 'change', browserSync.reload );
 });
 
 // Default Task
-gulp.task('default', ['sass', 'js', 'watch']);
+gulp.task('default', ['lint', 'sass', 'js', 'watch']);
