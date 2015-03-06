@@ -10,6 +10,9 @@ var src_dir_scss     = 'src/scss/';
 var dist_dir_css     = 'css/';
 
 var src_js = [
+    'bower_components/jquery/dist/jquery.min.js',
+    'bower_components/angular/angular.min.js',
+    'bower_components/angular-ui-router/release/angular-ui-router.min.js',
     foundation_dir + 'js/foundation.js',
     foundation_dir + 'js/vendor/custom.modernizr.js',
     'src/js/**/*.js'
@@ -77,4 +80,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['lint', 'sass', 'js', 'watch']);
+gulp.task('default', ['sass', 'js', 'watch']);
