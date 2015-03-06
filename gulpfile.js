@@ -7,7 +7,7 @@ var assets_dir       = '';
 var foundation_dir   = 'bower_components/foundation/';
 
 var src_dir_scss     = 'src/scss/';
-var dist_dir_css     = 'css/';
+var dist_dir_css     = 'dist/css/';
 
 var src_js = [
     'bower_components/jquery/dist/jquery.min.js',
@@ -17,7 +17,13 @@ var src_js = [
     foundation_dir + 'js/vendor/custom.modernizr.js',
     'src/js/**/*.js'
 ];
-var dist_dir_js      = 'js/';
+var dist_dir_js      = 'dist/js/';
+
+var src_html = [
+	'./src/index.html',
+	'./src/templates/**/*.*'
+];
+var dist_dir_html = 'dist';
 
 // Include Our Plugins
 var jshint  = require('gulp-jshint');
@@ -29,6 +35,11 @@ var datauri = require('gulp-data-uri');
 var autoprefixer = require('gulp-autoprefixer');
 var sourcemaps = require('gulp-sourcemaps');
 var browserSync = require('browser-sync');
+
+gulp.task('html', function(){
+  return gulp.src( src_html, { base: "./src" } )
+  	.pipe(gulp.dest( dist_dir_html ));
+});
 
 // Compile Our Sass
 gulp.task('sass', function() {
@@ -80,4 +91,4 @@ gulp.task('watch', function() {
 });
 
 // Default Task
-gulp.task('default', ['sass', 'js', 'watch']);
+gulp.task('default', ['html', 'sass', 'js', 'watch']);

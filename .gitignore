@@ -6,4 +6,4 @@ vendor
 .idea
 .idea/workspace.xml
 .idea/*
-content.json
+dist/*
